@@ -1,0 +1,3 @@
+[console_scripts]
+start-rollo = rollo.commands:start
+

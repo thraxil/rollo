@@ -1,0 +1,29 @@
+-f http://kang.ccnmtl.columbia.edu/eggs/
+
+TurboJson >= 0.9.1
+TurboKid >= 0.9.3
+CherryPy >= 2.2.0
+simplejson >= 1.1
+SQLObject >= 0.7.1dev_r1457
+elementtree >= 1.2.6
+cElementTree >= 1.0.5
+PasteScript >= 0.5
+FormEncode >= 0.4
+setuptools >= 0.6a11
+RuleDispatch
+nose >= 0.8.6
+TurboGears >= 1.0b1
+PyProtocols >= 1.0a0dev
+pYsearch >= 2.0
+Scriptaculous >= 1.6
+TGFastData >= 0.9a6
+ConfigObj >= 4.3.1
+DOMInclude >= 1.0
+Lightbox >= 1.0
+Paste >= 0.5
+TurboCheetah >= 0.9.5
+Cheetah >= 1.0
+PasteDeploy
+psycopg2
+
+
