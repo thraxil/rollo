@@ -1,0 +1,34 @@
+hideshow
+=============
+
+SUMMARY:
+
+simple unobtrusive js for hiding and showing elements
+
+PREREQS:
+
+MochiKit/Base
+MochiKit/Iter
+MochiKit/DOM
+MochiKit/Logging
+
+TESTED BROWSERS:
+
+FF/linux
+
+INSTRUCTIONS:
+
+* add mochikit and hs.js <script> tags to <head>
+* to hide/show an element, give it an id, then create an <a> somewhere
+  with the href="#elementsid" and a class of "hs-control"
+* if the element should be hidden when the page initially loads, give
+  it a class of "hs-init-hide"
+* add css rules specified in style/hs.css to your page one way or another
+* the control links will be given classes of "hs-control-show" and
+  "hs-control-hide" to mirror the elements they control. this can be
+  useful for adding visual indications such as turnbuckle arrows or
+  something
+
+KNOWN BUGS/LIMITATIONS:
+
+none yet

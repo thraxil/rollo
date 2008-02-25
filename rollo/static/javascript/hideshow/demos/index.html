@@ -1,0 +1,29 @@
+<html>
+<head><title>hideshow test</title>
+
+<script type="text/javascript" src="http://anders.ccnmtl.columbia.edu/test/MochiKit/MochiKit.js"></script>
+<script type="text/javascript" src="../hs.js"></script>
+<link rel="stylesheet" href="../style/hs.css" type="text/css"/>
+<style type="text/css">
+
+.hs-control-show { background-color: #9f9; }
+.hs-control-hide { background-color: #f99; }
+
+</style>
+</head>
+<body>
+
+<div id="hsdiv1">
+<p>this is a div that we can hide or show at will</p>
+</div>
+
+<p><a href="#hsdiv1" class="hs-control">hide/show div</a></p>
+
+<div id="hsdiv2" class="hs-init-hide">
+this div should be hidden by default.
+</div>
+
+<p><a href="#hsdiv2" class="hs-control">hide/show div</a></p>
+
+</body>
+</html>
