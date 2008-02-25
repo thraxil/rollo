@@ -129,6 +129,9 @@ h2 {
 
 .code {
   font-family: monospace;
+background-color: #fff; font-family: courier; font-size: 12px; margin: 0px;
+
+overflow: auto;
 }
 
 span.code {

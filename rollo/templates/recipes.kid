@@ -17,7 +17,7 @@
 <th><a href="/cookbook/${recipe.id}/">${recipe.name}</a></th>
 <td>${recipe.description}</td>
 <td>${recipe.language}</td>
-<td><pre>${recipe.code}</pre></td>
+<td><div class="code">${XML(recipe.code_html())}</div></td>
 </tr>
 
 </table>
