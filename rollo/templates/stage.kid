@@ -46,6 +46,7 @@ Or edit code:<br />
 <option py:if="stage.recipe.language == 'shell'" value="shell" selected="selected">shell</option>
 <option py:if="stage.recipe.language != 'shell'" value="shell">shell</option>
 </select>
+(<a href="/cookbook/${stage.recipe.id}/">promote this recipe to the cookbook</a>)
 <br />
 <textarea name="code" cols="60" rows="5" class="resizable">${stage.recipe.code}</textarea>
 

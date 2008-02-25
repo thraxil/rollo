@@ -12,7 +12,10 @@
 <form action="edit" method="post">
 <table>
 <tr><th>name</th>
-<td><input type="text" name="name" value="${recipe.name}"/></td></tr>
+<td><input type="text" name="name" value="${recipe.name}"/>
+<span style="color: #f00" py:if="recipe.name == ''">You must give this recipe a name to
+  enter it in the cookbook</span>
+</td></tr>
 <tr><th>description</th>
 <td><textarea name="description" rows="5" cols="60" class="resizable">${recipe.description}</textarea></td>
 </tr>
