@@ -40,6 +40,21 @@ language <select name="language">
 </table>
 <input type="submit" value="save"/>
 </form>
+
+<div py:if="recipe.stages">
+<h2>Deployments using this recipe</h2>
+<table width="100%">
+<tr py:for="i,stage in enumerate(recipe.stages)" class="${i%2 and 'odd' or 'even'}">
+<td>
+<a
+   href="/category/${stage.deployment.application.category.id}/">${stage.deployment.application.category.name}</a>
+   :
+<a
+   href="/application/${stage.deployment.application.id}/">${stage.deployment.application.name}</a> :
+<a href="/deployment/${stage.deployment.id}/">${stage.deployment.name}</a></td>
+</tr>
+</table>
+</div>
 <hr />
 <form action="delete" method="post">
 <fieldset><legend>delete recipe</legend>
