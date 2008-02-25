@@ -258,6 +258,16 @@ class DeploymentController(controllers.Controller,Content):
         deployment.destroySelf()
         raise redirect("/application/%d/" % application_id)
 
+    @expose()
+    def reorder_stages(self,deployment,**kwargs):
+        for k in kwargs.keys():
+            if k.startswith('stage_'):
+                stage_id = int(k[len('stage_'):])
+                stage = Stage.get(stage_id)
+                stage.cardinality = int(kwargs[k])
+        return "ok"
+
+
     
 class StageController(controllers.Controller,Content):
     def query(self,id):

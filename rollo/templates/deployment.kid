@@ -82,7 +82,8 @@ value="${setting.value}" style="width: 100%" /></td>
 <div py:if="deployment.stages">
 
 <table width="100%">
-<tr py:for="stage in deployment.stages">
+<tbody id="stages-table">
+<tr class="draggable" py:for="stage in deployment.stages" id="stage-${stage.id}">
 <th>${stage.cardinality} - <a href="/stage/${stage.id}/">${stage.name}</a></th>
 <td><a py:if="stage.recipe.name"
 href="/cookbook/${stage.recipe.id}/">Cookbook Recipe:
@@ -93,7 +94,9 @@ ${stage.recipe.name}</a>
 	    class="code">${XML(stage.recipe.code_html())}</div></div>
 </td>
 </tr>
+</tbody>
 </table>
+
 </div>
 
 <form action="add_stage" method="post">

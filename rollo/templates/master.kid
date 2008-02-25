@@ -25,9 +25,8 @@
     src="/static/javascript/tabber.js"></script>
     <script type="text/javascript"
     src="/static/javascript/resize_textarea/resizable_textareas.js"></script>	    
-
-
-
+    <script type="text/javascript"
+    src="/static/javascript/dragdropreorder.js"></script>	    
 
 </head>
 
