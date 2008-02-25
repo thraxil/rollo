@@ -5,22 +5,20 @@
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" py:replace="''"/>
 <title>Rollo</title>
 </head>
-<body>
+<body class="cookbook">
 
 
 <h1>Cookbook</h1>
 
-<table>
-<tr><th>name</th><th>description</th><th>language</th><th>code</th></tr>
-
-<tr py:for="recipe in all_recipes">
-<th><a href="/cookbook/${recipe.id}/">${recipe.name}</a></th>
-<td>${recipe.description}</td>
-<td>${recipe.language}</td>
-<td><div class="code">${XML(recipe.code_html())}</div></td>
-</tr>
-
-</table>
+<ul class="toc">
+<li py:for="recipe in all_recipes"><a href="#recipe-${recipe.id}">${recipe.name}</a></li>
+</ul>
+<div py:for="recipe in all_recipes" id="recipe-${recipe.id}">
+<h2><a href="/cookbook/${recipe.id}/">${recipe.name}</a></h2>
+<p>${recipe.description}</p>
+<p><b>${recipe.language}</b></p>
+<div class="code">${XML(recipe.code_html())}</div>
+</div>
 
 <form action="add_recipe" method="post">
 <fieldset><legend>add recipe</legend>
