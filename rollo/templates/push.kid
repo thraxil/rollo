@@ -29,7 +29,7 @@
 <div py:if="not push.pushstages">
 <!-- the push hasn't actually happened yet. we add the interface doing that here -->
 
-<input py:if="step" type="submit" value="run all stages"
+<input py:if="step" type="submit" value="run all stages" id="runall-button"
        onclick="runAllStages();this.disabled=true;return false" />
 
 <!-- the presence of this input tells the js to run the steps

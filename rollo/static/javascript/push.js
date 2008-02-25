@@ -4,12 +4,6 @@ var stageIds = new Array();
 
 function runAllStages() {
    runAll = true;
-   forEach(getElementsByTagAndClassName("tr","stage-row"),
-	   function (element) {
-	      var stage_id = element.id.split("-")[1];
-	      stageIds.push(stage_id);
-	   }
-	   );
    runStage(stageIds[0]);
 }
 
@@ -90,6 +84,16 @@ function stageResults(result) {
       var newStatus = DIV({'id' : 'push-status',
 	    'class' : result.status},result.status);
       swapDOM($('push-status'),newStatus);
+   } else {
+      if (!runAll) {
+	 if (getNextStageId(result.stage_id) == -1) {
+	    // last stage
+	    var newStatus = DIV({'id' : 'push-status',
+	    'class' : result.status},result.status);
+	    swapDOM($('push-status'),newStatus);
+	    $('runall-button').disabled = true;
+	 }
+      }
    }
 }
 
@@ -143,6 +147,12 @@ function initPush () {
 		hideContent(commands[i]);
 	}
 
+   forEach(getElementsByTagAndClassName("tr","stage-row"),
+	   function (element) {
+	      var stage_id = element.id.split("-")[1];
+	      stageIds.push(stage_id);
+	   }
+	   );
 
    var autorun = $('autorun');
    if (autorun) {

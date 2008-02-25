@@ -96,7 +96,11 @@ class Recipe(SQLObject):
                 g.generate_html(file,self.code)
                 return file.getvalue()
             else:
-                return "<pre>" + self.code + "</pre>"
+                g = Perl.PerlHTMLGenerator()
+                file = StringIO.StringIO()
+                g.generate_html(file,self.code)
+                return file.getvalue()
+
 
 class Stage(SQLObject):
     name        = UnicodeCol(default="")

@@ -467,10 +467,10 @@ div.inprogress {
 	   height: 50px;
 }	   
 
-.p_string{color:red;}
-.p_word{color:blue;}
+.p_string{color: #c66;}
+.p_word{color:purple;}
 .p_commentline{
-	color:green;
+	color: #c33;
 	font-style:italic;
 }
 
@@ -479,4 +479,12 @@ div.inprogress {
 .pl_commentline{
 	color:green;
 	font-style:italic;
+}
+
+.pl_identifier {
+	       color: #c66;
+}
+
+.pl_scalar {
+   color: #b93;
 }
