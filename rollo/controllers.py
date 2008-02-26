@@ -173,6 +173,12 @@ class ApplicationController(controllers.Controller,Content):
         d = Deployment(application=application,name=name)
         raise redirect(referer())
 
+    @expose()
+    def delete(self,application):
+        category_id = application.category.id
+        application.destroySelf()
+        raise redirect("/category/%d/" % category_id)
+
 class DeploymentController(controllers.Controller,Content):
     def query(self,id):
         return Deployment.get(id=id)
