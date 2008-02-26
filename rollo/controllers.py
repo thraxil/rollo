@@ -160,6 +160,12 @@ class CategoryController(controllers.Controller,Content):
         a = Application(category=category,name=name)
         raise redirect(referer())
 
+    @expose()
+    def delete(self,category):
+        category.destroySelf()
+        raise redirect("/")
+
+
 class ApplicationController(controllers.Controller,Content):
     def query(self,id):
         return Application.get(id=id)
