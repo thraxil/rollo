@@ -189,7 +189,7 @@ class PushStage(SQLObject):
             if rollback is not None:
                 env['ROLLBACK_URL'] = rollback.rollback_url
             p = Popen(script_filename,bufsize=1,stdout=PIPE,stderr=PIPE,
-                      cwd=self.push.checkout_dir(),env=env,close_fds=True)
+                      cwd=self.push.checkout_dir(),env=env,close_fds=True,shell=True)
             ret = p.wait()
             stdout = p.stdout.read()
             stderr = p.stderr.read()
