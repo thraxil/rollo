@@ -188,7 +188,7 @@ class PushStage(SQLObject):
             env = self.push.env()
             if rollback is not None:
                 env['ROLLBACK_URL'] = rollback.rollback_url
-            p = Popen(script_filename,stdout=PIPE,stderr=PIPE,
+            p = Popen(script_filename,bufsize=1,stdout=PIPE,stderr=PIPE,
                       cwd=self.push.checkout_dir(),env=env)
             ret = p.wait()
             stdout = p.stdout.read()
@@ -203,7 +203,7 @@ class PushStage(SQLObject):
 
     def execute(self,args):
         """ useful function available to recipes """
-        p = Popen(args,stdout=PIPE,stderr=PIPE,cwd=self.push.checkout_dir())
+        p = Popen(args,stdout=PIPE,stderr=PIPE,cwd=self.push.checkout_dir(),close_fds=True)
         ret = p.wait()
         stdout = p.stdout.read()
         stderr = p.stderr.read()
