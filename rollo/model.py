@@ -199,7 +199,6 @@ class PushStage(SQLObject):
                       env=env,close_fds=True,
                       shell=True)
             ret = p.wait()
-            (stdout,stderr) = p.communicate()
             stdout = p.stdout.read()
             stderr = p.stderr.read()
             l = Log(pushstage=self,command=recipe.code,
