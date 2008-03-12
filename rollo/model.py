@@ -13,6 +13,7 @@ from subprocess import Popen,PIPE
 from cherrypy.config import get as config
 import os.path
 import cStringIO
+from tempfile import TemporaryFile
 
 from SilverCity import Python,Perl
 
@@ -190,8 +191,8 @@ class PushStage(SQLObject):
             if rollback is not None:
                 env['ROLLBACK_URL'] = rollback.rollback_url
 
-            stdout_buffer = cStringIO.StringIO()
-            stderr_buffer = cStringIO.StringIO()
+            stdout_buffer = TemporaryFile()
+            stderr_buffer = TemporaryFile()
             
             p = Popen(script_filename,bufsize=1,
                       stdout=stdout_buffer,stderr=stderr_buffer,
@@ -199,8 +200,12 @@ class PushStage(SQLObject):
                       env=env,close_fds=True,
                       shell=True)
             ret = p.wait()
-            stdout = p.stdout.read()
-            stderr = p.stderr.read()
+            stdout_buffer.seek(0)
+            stderr_buffer.seek(0)
+            stdout = stdout_buffer.read()
+            stderr = stderr_buffer.read()
+            stdout_buffer.close()
+            stderr_buffer.close()
             l = Log(pushstage=self,command=recipe.code,
                     stdout=stdout,stderr=stderr)
             if ret == 0:
@@ -211,10 +216,19 @@ class PushStage(SQLObject):
 
     def execute(self,args):
         """ useful function available to recipes """
-        p = Popen(args,stdout=PIPE,stderr=PIPE,cwd=self.push.checkout_dir(),close_fds=True)
+
+        stdout_buffer = TemporaryFile()
+        stderr_buffer = TemporaryFile()
+   
+        p = Popen(args,stdout=stdout_buffer,stderr=stderr_buffer,
+                  cwd=self.push.checkout_dir(),close_fds=True)
         ret = p.wait()
-        stdout = p.stdout.read()
-        stderr = p.stderr.read()
+        stdout_buffer.seek(0)
+        stderr_buffer.seek(0)
+        stdout = stdout_buffer.read()
+        stderr = stderr_buffer.read()
+        stdout_buffer.close()
+        stderr_buffer.close()
         l = Log(pushstage=self,command=" ".join(args),stdout=stdout,stderr=stderr)
         return (ret,stdout,stderr)
 
