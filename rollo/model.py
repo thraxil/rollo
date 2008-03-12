@@ -12,6 +12,7 @@ import stat
 from subprocess import Popen,PIPE
 from cherrypy.config import get as config
 import os.path
+import cStringIO
 
 from SilverCity import Python,Perl
 
@@ -188,9 +189,17 @@ class PushStage(SQLObject):
             env = self.push.env()
             if rollback is not None:
                 env['ROLLBACK_URL'] = rollback.rollback_url
-            p = Popen(script_filename,bufsize=1,stdout=PIPE,stderr=PIPE,
-                      cwd=self.push.checkout_dir(),env=env,close_fds=True,shell=True)
+
+            stdout_buffer = cStringIO.StringIO()
+            stderr_buffer = cStringIO.StringIO()
+            
+            p = Popen(script_filename,bufsize=1,
+                      stdout=stdout_buffer,stderr=stderr_buffer,
+                      cwd=self.push.checkout_dir(),
+                      env=env,close_fds=True,
+                      shell=True)
             ret = p.wait()
+            (stdout,stderr) = p.communicate()
             stdout = p.stdout.read()
             stderr = p.stderr.read()
             l = Log(pushstage=self,command=recipe.code,
