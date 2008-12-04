@@ -14,7 +14,7 @@ function runStage(stage_id) {
    }
    d = loadJSONDoc("stage?" + queryString({
       'stage_id' : stage_id,
-      'rollback_id' : rollback_id,
+      'rollback_id' : rollback_id
    }));
    d.addCallback(stageResults);
    var stage_row = $("stage-" + stage_id);
@@ -37,7 +37,7 @@ function stageResults(result) {
 	    hideContent(td);
 	 }
 	 rows.push(TR({},td));
-	 
+
       }
 
       if (log.stdout) {
@@ -46,7 +46,7 @@ function stageResults(result) {
 	 if (result.status == "ok") {
 	    hideContent(td);
 	 }
-	 var stdout_row = TR({},td);   
+	 var stdout_row = TR({},td);
 	 rows.push(stdout_row);
       }
 
@@ -56,7 +56,7 @@ function stageResults(result) {
 	 if (result.status == "ok") {
 	    hideContent(td);
 	 }
-	 var stderr_row = TR({},td);   
+	 var stderr_row = TR({},td);
 	 rows.push(stderr_row);
       }
    }
@@ -131,7 +131,7 @@ function hideContent (td) {
 }
 
 function initPush () {
-	
+
 	var contents = getElementsByTagAndClassName("td","stdout");
 	for (var i = 0; i < contents.length; i++) {
 		hideContent(contents[i]);

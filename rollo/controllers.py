@@ -229,11 +229,14 @@ class DeploymentController(controllers.Controller,Content):
 
     @expose()
     def push(self,deployment,comment="",step=None):
-        push = deployment.new_push(user=get_user(),comment=comment)
-        if step:
-            raise redirect("/push/%d/?step=1" % push.id)
+        if cherrypy.request.method == "POST":
+            push = deployment.new_push(user=get_user(),comment=comment)
+            if step:
+                raise redirect("/push/%d/?step=1" % push.id)
+            else:
+                raise redirect("/push/%d/" % push.id)
         else:
-            raise redirect("/push/%d/" % push.id)
+            return "what are you doing?"
 
     @expose()
     def rollback(self,deployment,comment="",step=None,push_id=""):
